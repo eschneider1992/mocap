@@ -46,8 +46,8 @@ def main():
 
     # Taken from here: http://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#mplot3d-tutorial
     # and this example: http://matplotlib.org/mpl_examples/mplot3d/lines3d_demo.py
-    fig = plt.figure()
-    ax = fig.gca(projection='3d')
+    fig1 = plt.figure(1)
+    ax = fig1.gca(projection='3d')
     ax.plot([0], [0], [0], marker='o', markersize=10, color='k', label='base')
     # ax.plot(base_xyz[:,0], -base_xyz[:,2], base_xyz[:,1], label='base debuggng')
     ax.plot(mass_x, mass_y, mass_z, color='b', label='mass path')
@@ -60,6 +60,15 @@ def main():
     ax.set_xlabel('X axis (m)')
     ax.set_ylabel('Y axis (m)')
     ax.set_zlabel('Z axis (m)')
+    # plt.show()
+
+    fig2 = plt.figure(2)
+    plt.plot([base_x], [base_y], label='base')
+    plt.plot(mass_x, mass_y, color='g', label='mass path')
+    plt.title('Pendumum - Long Data Set - Top View')
+    plt.legend()
+    plt.xlabel('X axis (m)')
+    plt.ylabel('Y axis (m)')
     plt.show()
 
 
