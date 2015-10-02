@@ -79,5 +79,18 @@ def find_peaks(Z):
     return peak_indices
 
 
+def calculate_phi(R, Z):
+    '''
+    Returns phi, the angle from -\hat{k}
+    '''
+    return np.arctan2(R, abs(Z))
+
+
+def calculate_r(X, Y):
+    '''
+    Returns R, the radius in cylindrical coordinates
+    '''
+    return np.sign(X) * np.sqrt(pow(X, 2) + pow(Y, 2))
+
 if __name__ == '__main__':
     main()
