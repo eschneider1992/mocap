@@ -12,7 +12,7 @@ def main():
     # Loads the data using the folder and data name
     # data_run.ReadFile('testData', 'goodtest0-short.csv')
     data_run.ReadFile('testData', 'goodtest1.csv')
-    
+
     # Gets data in format specified in docstring for data()
     raw_pose_data = data_run.data()[3]
 
@@ -56,10 +56,15 @@ def main():
     ax.plot([base_x], [base_y], [base_z], label='base')
     ax.plot(mass_x, mass_y, mass_z, color='g', label='mass path')
     # ax.plot()
-    ax.set_xlim3d(-0.5, 0.5)
-    ax.set_ylim3d(-0.5, 0.5)
-    ax.set_zlim3d(-0.75, 0.25)
+    # ax.set_xlim3d(-0.5, 0.5)
+    # ax.set_ylim3d(-0.5, 0.5)
+    # ax.set_zlim3d(-0.75, 0.25)
+    plt.title('Pendumum - Long Data Set')
     ax.legend()
+    ax.set_xlabel('X axis (m)')
+    ax.set_ylabel('Y axis (m)')
+    ax.set_zlabel('Z axis (m)')
+
     plt.show()
 
 
