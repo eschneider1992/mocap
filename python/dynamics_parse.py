@@ -10,8 +10,9 @@ def main():
     data_run = Run()
 
     # Loads the data using the folder and data name
-    data_run.ReadFile('testData', 'goodtest0-short.csv')
-
+    # data_run.ReadFile('testData', 'goodtest0-short.csv')
+    data_run.ReadFile('testData', 'goodtest1.csv')
+    
     # Gets data in format specified in docstring for data()
     raw_pose_data = data_run.data()[3]
 
@@ -26,7 +27,7 @@ def main():
     # Correct for error
     # There is a shitty data point between 950 and 975 for the base
     # The [950, 975] deletes numbers between those indices, the 0 indicates axis (horizontal)
-    np.delete(base_xyz, [950,975], axis=0)
+    # np.delete(base_xyz, [950,975], axis=0)
 
     # Get average base position
     average_base_pos = np.average(base_xyz, axis=0)
