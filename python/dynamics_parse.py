@@ -10,8 +10,8 @@ def main():
     data_run = Run()
 
     # Loads the data using the folder and data name
-    data_run.ReadFile('testData', 'goodtest0-short.csv')
-    # data_run.ReadFile('testData', 'goodtest1.csv')
+    # data_run.ReadFile('testData', 'goodtest0-short.csv')
+    data_run.ReadFile('testData', 'goodtest1.csv')
 
     # Gets data in format specified in docstring for data()
     raw_pose_data = data_run.data()[3]
@@ -27,7 +27,7 @@ def main():
     # Correct for error
     # There is a shitty data point between 950 and 975 for the base
     # The [950, 975] deletes numbers between those indices, the 0 indicates axis (horizontal)
-    np.delete(base_xyz, [950,975], axis=0)  # Cuts out shitty section of goodtest0-short
+    # np.delete(base_xyz, [950,975], axis=0)  # Cuts out shitty section of goodtest0-short
 
     # Get average base position
     average_base_pos = np.average(base_xyz, axis=0)
@@ -55,7 +55,7 @@ def main():
     ax.set_xlim3d(-0.5, 0.5)
     ax.set_ylim3d(-0.5, 0.5)
     ax.set_zlim3d(-0.75, 0.25)
-    plt.title('Experimental Pendumum Data')
+    plt.title('Pendulum - Isometric View')
     ax.legend()
     ax.set_xlabel('X axis (m)')
     ax.set_ylabel('Y axis (m)')
@@ -65,7 +65,7 @@ def main():
     fig2 = plt.figure(2)
     plt.plot([base_x], [base_y], label='base')
     plt.plot(mass_x, mass_y, color='g', label='mass path')
-    plt.title('Pendumum - Long Data Set - Top View')
+    plt.title('Pendulum - Top View')
     plt.legend()
     plt.xlabel('X axis (m)')
     plt.ylabel('Y axis (m)')
