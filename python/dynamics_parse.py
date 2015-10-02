@@ -14,11 +14,14 @@ def main():
     data_run.ReadFile('testData', 'goodtest1.csv')
 
     # Gets data in format specified in docstring for data()
+    time = data_run.data()[0]
     raw_pose_data = data_run.data()[3]
 
     # Splits data by body - this has do do with how the numpy array is formatted
     base_pose = raw_pose_data[:, 0, :]
+    # mass_pose = raw_pose_data[:, 1, :]  # USE THIS FOR goodtest1
     mass_pose = raw_pose_data[650:, 1, :]  # Cuts out handheld section of goodtest0-short
+    time = time[650:] # Cuts out handheld section of goodtest0-short
 
     # Gets X, Y, Z data (all for the rigid body, not the individual markers)
     base_xyz = base_pose[:, 3:]
@@ -44,6 +47,10 @@ def main():
     # Find peaks
     peak_indices = find_peaks(mass_z)
 
+    # Find R and phi
+    R = calculate_r(mass_x, mass_y)
+    phi = calculate_phi(R, mass_z)
+
     # Taken from here: http://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#mplot3d-tutorial
     # and this example: http://matplotlib.org/mpl_examples/mplot3d/lines3d_demo.py
     fig1 = plt.figure(1)
@@ -60,15 +67,20 @@ def main():
     ax.set_xlabel('X axis (m)')
     ax.set_ylabel('Y axis (m)')
     ax.set_zlabel('Z axis (m)')
-    # plt.show()
 
     fig2 = plt.figure(2)
     plt.plot([base_x], [base_y], label='base')
     plt.plot(mass_x, mass_y, color='g', label='mass path')
     plt.title('Pendulum - Top View')
-    plt.legend()
+    plt.axis([-0.6, 0.6, -0.6, 0.6])
     plt.xlabel('X axis (m)')
     plt.ylabel('Y axis (m)')
+
+    fig3 = plt.figure(3)
+    plt.plot(time, phi)
+    plt.title('Phi vs. time, where phi is the angle up from the -k axis')
+    plt.xlabel('Time (s)')
+    plt.ylabel('Angle from vertical (rad)')
     plt.show()
 
 
